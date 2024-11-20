@@ -6,6 +6,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:spotify_app/core/config/theme/app_theme.dart';
 import 'package:spotify_app/presentation/choose_mode/bloc/theme_cubit.dart';
 import 'package:spotify_app/presentation/splash/pages/splash.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,6 +16,9 @@ Future<void> main() async {
         ? HydratedStorage.webStorageDirectory
         : await getApplicationDocumentsDirectory(),
   );
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const MyApp());
 }
 
