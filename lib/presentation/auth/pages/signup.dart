@@ -4,10 +4,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:spotify_app/common/widgets/appbar/app_bar.dart';
 import 'package:spotify_app/common/widgets/button/basic_app_button.dart';
 import 'package:spotify_app/core/config/assets/app_vectors.dart';
-import 'package:spotify_app/presentation/auth/pages/signup.dart';
+import 'package:spotify_app/presentation/auth/pages/signin.dart';
 
-class SigninPage extends StatelessWidget {
-  const SigninPage({super.key});
+class SignupPage extends StatelessWidget {
+  const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +31,10 @@ class SigninPage extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
+            _fullNameField(context),
+            const SizedBox(
+              height: 30,
+            ),
             _emailField(context),
             const SizedBox(
               height: 30,
@@ -39,21 +43,29 @@ class SigninPage extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            BasicAppButton(onPressed: () {}, title: 'Sign In')
+            BasicAppButton(onPressed: () {}, title: 'Sign Up')
           ],
         ),
       ),
-      bottomNavigationBar: _signupText(context),
+      bottomNavigationBar: _signinText(context),
     );
   }
 
   Widget _registerText() {
     return const Text(
-      'Singn In',
+      'Register',
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 45,
       ),
+    );
+  }
+
+  Widget _fullNameField(BuildContext context) {
+    return TextField(
+      decoration: InputDecoration(
+        hintText: 'Full Name',
+      ).applyDefaults(Theme.of(context).inputDecorationTheme),
     );
   }
 
@@ -73,14 +85,14 @@ class SigninPage extends StatelessWidget {
     );
   }
 
-  Widget _signupText(BuildContext context) {
+  Widget _signinText(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 40),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'Not a member? ',
+            'Do You Have An Account? ',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 14,
@@ -90,11 +102,11 @@ class SigninPage extends StatelessWidget {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const SignupPage()),
+                MaterialPageRoute(builder: (context) => const SigninPage()),
               );
             },
             child: const Text(
-              'Sign Up',
+              'Sign In',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
